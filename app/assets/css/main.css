@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+/*
+  Semantic color tokens.
+  Components use classes like bg-bg, text-fg, bg-primary, so switching
+  a theme only changes the CSS variables below, never the markup.
+*/
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-primary: var(--primary);
+  --color-primary-fg: var(--primary-fg);
+  --color-accent: var(--accent);
+  --color-border: var(--border);
+}
+
+/* Values derived from each theme's --bg / --fg (shared by all themes) */
+:root {
+  color-scheme: dark;
+  --surface: color-mix(in oklab, var(--bg), white 8%);
+  --border: color-mix(in oklab, var(--bg), white 16%);
+  --muted: color-mix(in oklab, var(--fg) 68%, var(--bg));
+}
+
+/* Spring (default theme) */
+:root,
+:root[data-theme="spring"] {
+  --bg: #0f3d2e;
+  --fg: #eef6f0;
+  --primary: #7fd6a4;
+  --primary-fg: #0f3d2e;
+  --accent: #e9d98a;
+}
+
+/* Summer */
+:root[data-theme="summer"] {
+  --bg: #5a1e2a;
+  --fg: #fbeff0;
+  --primary: #f2a6a0;
+  --primary-fg: #3a0f18;
+  --accent: #f2c66d;
+}
+
+/* Autumn */
+:root[data-theme="autumn"] {
+  --bg: #5a2e0a;
+  --fg: #fbf1e3;
+  --primary: #e8a04a;
+  --primary-fg: #3a1c04;
+  --accent: #d98b5f;
+}
+
+/* Winter */
+:root[data-theme="winter"] {
+  --bg: #071739;
+  --fg: #eaf0fb;
+  --primary: #7aa7ff;
+  --primary-fg: #071739;
+  --accent: #b8c4e0;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--fg);
+}
