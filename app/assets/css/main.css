@@ -65,3 +65,41 @@ body {
   background-color: var(--bg);
   color: var(--fg);
 }
+
+/* Global glass card: add class="card" to any element */
+@layer components {
+  .card {
+    position: relative;
+    isolation: isolate;
+    border-radius: 28px;
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 21px -8px rgba(255, 255, 255, 0.3);
+  }
+
+  /* Inner highlight */
+  .card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    border-radius: inherit;
+    box-shadow: inset 0 0 6px -3px rgba(255, 255, 255, 0.7);
+    pointer-events: none;
+  }
+
+  /* Blur + distortion layer behind the content */
+  .card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    filter: url(#glass-distortion);
+    -webkit-filter: url(#glass-distortion);
+    isolation: isolate;
+    pointer-events: none;
+  }
+}
